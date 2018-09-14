@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MusicApp</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <p>wordsss this is a header</p>
+
+  </head>
+
+  <body>
+    <% if current_user %>
+    <h1>Hello, <%= current_user.email %> </h1>
+    <form class="" action="<%= session_url %>" method="post">
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+      <input type="hidden" name="_method" value="delete">
+      <input type="submit" name="" value="logout">
+    </form>
+
+    <% else %>
+      <h1>Sign up / sign in</h1>
+      <form class="" action="<%= new_user_url %>" method="get">
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+        <input type="submit" name="" value="sign up">
+      </form>
+
+      <form class="" action="<%= new_session_url %>" method="get">
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+        <input type="submit" name="" value="login">
+      </form>
+
+
+
+      </form>
+
+    <% end %>
+
+    <%= yield %>
+  </body>
+
+  <footer>Music app footer is this</footer>
+</html>
